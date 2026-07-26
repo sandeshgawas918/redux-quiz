@@ -1,6 +1,6 @@
 "use client"
 
-import { setNewArray, setnumber, setscore, setuserAns } from '@/redux/slices/quizSlicer'
+import { setNewArray, setnumber, setscore, setuserAns, UserAnswer } from '@/redux/slices/quizSlicer'
 import { RootState } from '@/redux/store/store'
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -19,14 +19,6 @@ import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Separator } from "@/components/ui/separator";
 import { useParams, useRouter } from 'next/navigation'
-
-export type UserAnswer = {
-  question: string,
-  answers:any,
-  selectedAnswer: string,
-  correct: boolean,
-  correctAnswer: string
-}
 
 type Props = {
   question: string,

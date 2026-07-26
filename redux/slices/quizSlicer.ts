@@ -1,6 +1,14 @@
-import { UserAnswer } from "@/app/quiz-dashboard/page";
+
 import { TransformedQuestions } from "@/utils/API";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+
+export type UserAnswer = {
+    question: string,
+    answers: any,
+    selectedAnswer: string,
+    correct: boolean,
+    correctAnswer: string
+}
 
 type QuizState = {
     questions: TransformedQuestions[],
@@ -9,11 +17,13 @@ type QuizState = {
     userAns: UserAnswer[],
     score: number,
     gameOver: boolean,
-    newArray?: any,
+    newArray?: UserAnswer,
     questionSize: number,
     category: string,
     difficulty: string
 }
+
+
 
 const initialState: QuizState = {
     questions: [],
