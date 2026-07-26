@@ -12,9 +12,10 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from '@/components/ui/separator';
+import { RootState } from '@/redux/store/store';
 
 function page() {
-    const { score, newArray, questionSize } = useSelector((state) => state.quiz)
+    const { score, newArray, questionSize } = useSelector((state: RootState) => state.quiz)
     return (
         <div className="mx-auto max-w-4xl space-y-3 px-4 py-5">
 

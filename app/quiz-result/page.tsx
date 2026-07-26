@@ -15,9 +15,10 @@ import { useSelector } from 'react-redux';
 import { Separator } from '@/components/ui/separator';
 import Link from 'next/link';
 import { Toaster, toast } from 'sonner'
+import { RootState } from '@/redux/store/store';
 
 function page() {
-    const { score, newArray, questionSize } = useSelector((state) => state.quiz)
+    const { score, newArray, questionSize } = useSelector((state: RootState) => state.quiz)
 
     return (
         <div className="flex min-h-screen items-center justify-center bg-slate-700/50 px-4 py-6">
