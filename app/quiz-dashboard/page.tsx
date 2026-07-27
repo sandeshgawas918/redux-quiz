@@ -77,6 +77,14 @@ function QuestionCard() {
     router.push("/quiz-result")
   }
 
+  if (!questions.length || !questions[number]) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        Loading...
+      </div>
+    );
+  }
+
   return (
     <div className="flex min-h-screen items-center justify-center bg-slate-700/50 px-4 py-10">
       <Card className="w-full max-w-3xl shadow-2xl rounded-2xl">
