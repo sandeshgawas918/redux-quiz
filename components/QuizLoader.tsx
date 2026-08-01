@@ -2,8 +2,8 @@ import { Brain } from "lucide-react";
 
 export default function QuizLoader() {
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/70 backdrop-blur-md">
-            <div className="w-[420px] rounded-3xl border border-white/10 bg-slate-900/80 p-20 sm:p-8 shadow-2xl">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/70 backdrop-blur-md p-20">
+            <div className="w-[420px] rounded-3xl border border-white/10 bg-slate-900/80 p-8 shadow-2xl">
                 <div className="flex flex-col items-center text-center">
                     <div className="rounded-full bg-violet-600/20 p-5 animate-pulse">
                         <Brain className="h-12 w-12 text-violet-400" />
