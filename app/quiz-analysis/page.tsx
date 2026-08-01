@@ -1,6 +1,9 @@
 "use client"
 import React from 'react'
 import { useSelector } from 'react-redux'
+import { Button } from "@/components/ui/button";
+import { ArrowLeft, Home } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 import {
     Card,
@@ -15,10 +18,29 @@ import { Separator } from '@/components/ui/separator';
 import { RootState } from '@/redux/store/store';
 
 function page() {
-    const { score, newArray, questionSize } = useSelector((state: RootState) => state.quiz)
+    const { newArray } = useSelector((state: RootState) => state.quiz)
+    const router = useRouter();
     return (
         <div className="mx-auto max-w-4xl space-y-3 px-4 py-5">
+            <div className='flex flex-row justify-between'>
+                <Button
+                    variant="outline"
+                    onClick={() => router.back()}
+                    className="mb-2"
+                >
+                    <ArrowLeft className="mr-2 h-4 w-4" />
+                    Back
+                </Button>
 
+                <Button
+                    variant="outline"
+                    onClick={() => router.push("/")}
+                    className="mb-2"
+                >
+                    <Home className="mr-2 h-4 w-4" />
+                    Home
+                </Button>
+            </div>
             <h1 className="text-4xl font-bold text-center">
                 📊 Quiz Analysis
             </h1>
@@ -103,75 +125,3 @@ function page() {
 
 export default page
 
-const dummyArray = [
-    {
-        "question": "In the 2014 Pokemon VGC Finals, which Pokemon was famous for bringing the winner to victory?",
-        "answers": ["Garchomp", "Lapras", "Primal Groudon", "Pachirisu"],
-        "selectedAnswer": "Garchomp",
-        "correct": false,
-        "correctAnswer": "Pachirisu"
-    },
-    {
-        "question": "What is the official language of Costa Rica?",
-        "answers": ["English", "Portuguese", "Creole", "Spanish"],
-        "selectedAnswer": "Creole",
-        "correct": false,
-        "correctAnswer": "Spanish"
-    },
-    {
-        "question": "Who recorded the album called \"Down to the Moon\" in 1986?",
-        "answers": ["Jean-Michel Jarre", "Bing Crosby", "Enya", "Andreas Vollenweider"],
-        "selectedAnswer": "Enya",
-        "correct": false,
-        "correctAnswer": "Andreas Vollenweider"
-    },
-    {
-        "question": "Which product did Nokia, the telecommunications company, originally sell?",
-        "answers": ["Phones", "Computers", "Processors", "Paper"],
-        "selectedAnswer": "Paper",
-        "correct": true,
-        "correctAnswer": "Paper"
-    },
-    {
-        "question": "What is the standard frame rate for animation?",
-        "answers": ["12 FPS", "30 FPS", "60 FPS", "24 FPS"],
-        "selectedAnswer": "30 FPS",
-        "correct": false,
-        "correctAnswer": "24 FPS"
-    },
-    {
-        "question": "When was Pong released?",
-        "answers": ["March 29, 2017", "November 29, 1970", "December 14, 1974", "November 29, 1972"],
-        "selectedAnswer": "December 14, 1974",
-        "correct": false,
-        "correctAnswer": "November 29, 1972"
-    },
-    {
-        "question": "What is the name of the City in Saints Row The Third?",
-        "answers": ["Stilwater", "Carcer", "Liberty", "Steelport"],
-        "selectedAnswer": "Carcer",
-        "correct": false,
-        "correctAnswer": "Steelport"
-    },
-    {
-        "question": "How many flagship monsters appear in Monster Hunter Generations?",
-        "answers": ["1", "2", "3", "4"],
-        "selectedAnswer": "3",
-        "correct": false,
-        "correctAnswer": "4"
-    },
-    {
-        "question": "Which of the following is a personal computer made by the Japanese company Fujitsu?",
-        "answers": ["PC-9801", "Xmillennium", "MSX", "FM-7"],
-        "selectedAnswer": "MSX",
-        "correct": false,
-        "correctAnswer": "FM-7"
-    },
-    {
-        "question": "The notion of a \"set that contains all sets which do not contain themselves\" is a paradoxical idea attributed to which English philosopher?",
-        "answers": ["Francis Bacon", "John Locke", "Alfred North Whitehead", "Bertrand Russell"],
-        "selectedAnswer": "Alfred North Whitehead",
-        "correct": false,
-        "correctAnswer": "Bertrand Russell"
-    }
-]

@@ -29,7 +29,6 @@ export const fetchQuestions = async (amount: number, difficulty: string, categor
     const data = await fetch(endpoint)
     const result = await data.json()
     const originalArray: Question[] = result.results
-    console.log(`originalArray response data : `, originalArray)
 
     const transformedArray = originalArray.map((question: Question): TransformedQuestions => {
         return {
@@ -37,8 +36,6 @@ export const fetchQuestions = async (amount: number, difficulty: string, categor
             answers: [...question.incorrect_answers, question.correct_answer]
         }
     })
-
-    console.log(`transformedArray response data : `, transformedArray)
 
     return transformedArray
 }
