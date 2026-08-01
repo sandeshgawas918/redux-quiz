@@ -20,14 +20,10 @@ import QuizLoader from './QuizLoader';
 
 
 function IntroPage() {
+    const [isLoading, setIsLoading] = useState(false);
     const router = useRouter()
     const dispatch = useDispatch()
     const {
-        questions,
-        loading,
-        number,
-        userAns,
-        score,
         questionSize,
         category,
         difficulty,
@@ -35,30 +31,21 @@ function IntroPage() {
 
     const startQuizz = async () => {
         try {
-            dispatch(setloading(true))
+            setIsLoading(true)
             dispatch(startGame())
             const newQuestions = await fetchQuestions(questionSize, difficulty, category)
             dispatch(setquestions(newQuestions))
-            // console.log("newQuestions", newQuestions)
             router.push("/quiz-dashboard")
         } catch (error) {
             console.log(error)
-            dispatch(setloading(false))
         } finally {
-            dispatch(setloading(false))
+            console.log("routed to quiz dashboard")
         }
-    }
-
-    if (loading) {
-        return (
-            <>
-                <QuizLoader />
-            </>
-        )
     }
 
     return (
         <div className=" mt-5">
+            {isLoading && <QuizLoader />}
             {/* Dark Overlay */}
             <div className="absolute inset-0"></div>
 
@@ -83,8 +70,8 @@ function IntroPage() {
                         </label>
 
                         <Input
-                            min={10}
-                            max={50}
+                            min={1}
+                            max={49}
                             value={questionSize}
                             onChange={(e) => dispatch(setQuestionSize(Number(e.target.value)))}
                             className="h-12 rounded-xl border border-slate-700 bg-slate-800/80 text-white placeholder:text-slate-400 focus:border-violet-500 focus:ring-2 focus:ring-violet-500/40"
@@ -97,29 +84,18 @@ function IntroPage() {
                             Select Category
                         </label>
 
-                        <Select value={category} onValueChange={(value) => {
-                            if (value) {
-                                dispatch(setCategory(value));
-                            }
-                        }}>
-                            <SelectTrigger className="h-12 w-full rounded-xl border border-slate-700 bg-slate-800/80 text-white focus:ring-2 focus:ring-violet-500 focus:ring-offset-0 py-6">
-                                <SelectValue placeholder="Theme" />
-                            </SelectTrigger>
-
-                            <SelectContent className="rounded-xl border border-slate-700 bg-slate-900 text-white shadow-2xl">
-                                <SelectGroup>
-                                    {categories.map((item) => (
-                                        <SelectItem
-                                            key={item.id}
-                                            value={item.id}
-                                            className="cursor-pointer rounded-md focus:bg-violet-600 focus:text-white"
-                                        >
-                                            {item.label}
-                                        </SelectItem>
-                                    ))}
-                                </SelectGroup>
-                            </SelectContent>
-                        </Select>
+                        <select
+                            value={category}
+                            onChange={(e) => dispatch(setCategory(e.target.value))}
+                            className="appearance-none h-12 w-full rounded-xl border border-slate-700 bg-slate-800 px-3 text-xs text-white focus:outline-none focus:ring-2 focus:ring-violet-500"
+                        >
+                            <option value="" className='px-7'>Select Category</option>
+                            {categories.map((item) => (
+                                <option key={item.id} value={item.id} className='px-7'>
+                                    {item.label}
+                                </option>
+                            ))}
+                        </select>
                     </div>
 
                     {/* Difficulty */}
